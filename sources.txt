@@ -1,0 +1,2 @@
+# Public skill repos the registry screen offers. One owner/repo per line.
+Human-Frontier-Labs-Inc/human-frontier-labs-marketplace

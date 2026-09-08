@@ -1,0 +1,163 @@
+/* One accent, one serif-free stack, generous measure. The site should read
+   like documentation, not like a product page. */
+:root {
+  --bg: #ffffff;
+  --panel: #f8f9fa;
+  --fg: #212529;
+  --dim: #6c757d;
+  --faint: #adb5bd;
+  --rule: #e9ecef;
+  --accent: #0b7285;
+  --accent-soft: #e3fafc;
+  --err: #c92a2a;
+  --warn: #e67700;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101113;
+    --panel: #16181c;
+    --fg: #e9ecef;
+    --dim: #909296;
+    --faint: #5c5f66;
+    --rule: #2c2e33;
+    --accent: #38d9a9;
+    --accent-soft: #0c2b25;
+    --err: #ff8787;
+    --warn: #ffd43b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+
+/* ── sidebar ─────────────────────────────────────────────────────────── */
+.sidebar {
+  border-right: 1px solid var(--rule);
+  padding: 28px 20px 60px;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.brand { font-weight: 650; letter-spacing: -0.01em; font-size: 17px; color: var(--fg); }
+.brand small { display: block; font: 400 12px/1.5 var(--mono); color: var(--faint); margin-top: 4px; }
+
+.group-label {
+  font: 600 11px/1 var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 26px 0 8px;
+}
+.nav-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 8px;
+  margin: 0 -8px;
+  border-radius: 4px;
+  color: var(--dim);
+  font-size: 14px;
+}
+.nav-item:hover { background: var(--panel); text-decoration: none; color: var(--fg); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.nav-item .dot { font-size: 11px; }
+
+/* ── main ────────────────────────────────────────────────────────────── */
+main { padding: 56px 48px 120px; max-width: calc(var(--measure) + 96px); }
+
+h1 { font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 8px; }
+h2 { font-size: 21px; letter-spacing: -0.01em; margin: 44px 0 10px; padding-top: 10px; border-top: 1px solid var(--rule); }
+h3 { font-size: 16px; margin: 26px 0 6px; }
+p, li { max-width: var(--measure); }
+
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg);
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  margin: 20px 0 28px;
+  max-width: var(--measure);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font: 12px/1.6 var(--mono);
+  color: var(--dim);
+  margin-bottom: 8px;
+}
+.meta b { color: var(--faint); font-weight: 400; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }
+.badge {
+  font: 11px/1 var(--mono);
+  padding: 5px 8px;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+}
+.badge.err { color: var(--err); }
+.badge.warn { color: var(--warn); }
+.badge.ok { color: var(--accent); }
+
+.tag {
+  font: 11px/1 var(--mono);
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: var(--panel);
+  color: var(--dim);
+}
+
+/* ── index ───────────────────────────────────────────────────────────── */
+.card {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  color: inherit;
+}
+.card:hover { text-decoration: none; }
+.card:hover .card-name { color: var(--accent); }
+.card-name { font-weight: 620; font-size: 16px; }
+.card-desc { color: var(--dim); font-size: 14.5px; margin-top: 3px; max-width: var(--measure); }
+
+.section-intro { color: var(--dim); margin: 0 0 4px; }
+
+/* ── prose ───────────────────────────────────────────────────────────── */
+.prose table { border-collapse: collapse; margin: 16px 0; font-size: 14.5px; max-width: var(--measure); }
+.prose th, .prose td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.prose th { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent); }
+.prose code { font: 13.5px var(--mono); background: var(--panel); padding: 1px 5px; border-radius: 3px; }
+.prose pre { background: var(--panel); padding: 14px 16px; border-radius: 5px; overflow-x: auto; max-width: var(--measure); }
+.prose pre code { background: none; padding: 0; font-size: 13px; }
+.prose blockquote { margin: 16px 0; padding-left: 16px; border-left: 2px solid var(--rule); color: var(--dim); }
+.prose ul { padding-left: 20px; }
+
+.files { font: 13px/1.9 var(--mono); color: var(--dim); }
+.files .size { color: var(--faint); }
+
+.footer-note { margin-top: 60px; color: var(--faint); font: 12px var(--mono); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--rule); }
+  main { padding: 32px 20px 80px; }
+}

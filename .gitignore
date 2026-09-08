@@ -1,0 +1,5 @@
+catalog.json
+tui/si
+web/node_modules
+web/dist
+*.bak
